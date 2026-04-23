@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoLearn — Customer Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #F4F6F9;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .logo-circle {
+    width: 34px; height: 34px;
+    background: #F97316;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 0.8rem;
+  }
+  .logo-text { text-align: left; }
+  .logo-name { font-weight: 700; font-size: 1rem; color: #1A202C; letter-spacing: -0.02em; }
+  .logo-sub { font-size: 0.65rem; color: #718096; }
+  h1 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1A202C;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  input[type="password"] {
+    width: 100%;
+    background: #F4F6F9;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: #1A202C;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  input[type="password"]:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+    background: white;
+  }
+  button {
+    width: 100%;
+    padding: 11px;
+    background: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  button:hover { background: #2563EB; }
+  .error {
+    display: none;
+    font-size: 0.75rem;
+    color: #E53E3E;
+    margin-top: 10px;
+  }
+  .error.visible { display: block; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <div class="logo-circle">GL</div>
+    <div class="logo-text">
+      <div class="logo-name">GoLearn</div>
+      <div class="logo-sub">part of eduhouse</div>
+    </div>
+  </div>
+  <h1>Customer Marketing Dashboard</h1>
+  <input type="password" id="passwordInput" placeholder="Password" autofocus />
+  <button onclick="checkPassword()">Log ind</button>
+  <div class="error" id="errorMsg">Forkert password — prøv igen</div>
+</div>
+<script>
+  function checkPassword() {
+    if (document.getElementById('passwordInput').value === 'Wizkids347') {
+      sessionStorage.setItem('golearn-auth', 'true');
+      window.location.href = 'dashboard.html';
+    } else {
+      document.getElementById('errorMsg').classList.add('visible');
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
+    }
+  }
+  document.getElementById('passwordInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkPassword();
+  });
+</script>
+</body>
+</html>
